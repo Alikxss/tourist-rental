@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rent camping and hiking equipment at affordable prices.">
+  <title>TrailRent | Tourist Equipment Rental</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <a href="#" class="logo">TrailRent</a>
+
+    <nav>
+      <a href="#equipment">Equipment</a>
+      <a href="#rental">Rent Gear</a>
+      <a href="#terms">Terms</a>
+      <a href="#prices">Price List</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Don't Buy Gear — Rent It!</h1>
+      <p>Everything you need for your next adventure in the mountains.</p>
+      <a href="#equipment" class="btn">Choose Equipment</a>
+    </section>
+
+    <section id="equipment">
+      <h2 class="section-title">Our Equipment</h2>
+      <p class="subtitle">Reliable gear for your outdoor adventures.</p>
+
+      <div class="gear-grid">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=700&q=80" alt="Mountain camping tent">
+          <div class="card-content">
+            <h3>Mountain Tent</h3>
+            <p class="details">Weight: 2.5 kg</p>
+            <p class="details">Capacity: 2 people</p>
+            <p class="price">₸3,500 / day</p>
+            <button class="btn choose-btn" data-item="tent">Rent Now</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1622260614153-03223fb72052?auto=format&fit=crop&w=700&q=80" alt="Hiking backpack">
+          <div class="card-content">
+            <h3>Hiking Backpack</h3>
+            <p class="details">Weight: 1.2 kg</p>
+            <p class="details">Capacity: 40 litres</p>
+            <p class="price">₸1,500 / day</p>
+            <button class="btn choose-btn" data-item="backpack">Rent Now</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=700&q=80" alt="Camping sleeping equipment">
+          <div class="card-content">
+            <h3>Sleeping Bag</h3>
+            <p class="details">Weight: 1 kg</p>
+            <p class="details">Temperature: -5°C</p>
+            <p class="price">₸1,000 / day</p>
+            <button class="btn choose-btn" data-item="sleeping">Rent Now</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=700&q=80" alt="Nature and outdoor adventure">
+          <div class="card-content">
+            <h3>Camping Kit</h3>
+            <p class="details">Weight: 3 kg</p>
+            <p class="details">For outdoor cooking</p>
+            <p class="price">₸4,500 / day</p>
+            <button class="btn choose-btn" data-item="kit">Rent Now</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="rental" class="rental">
+      <h2 class="section-title">Rental Form</h2>
+      <p class="subtitle">Fill in the details to estimate your rental cost.</p>
+
+      <form id="rental-form">
+        <label for="equipment">Choose equipment</label>
+        <select id="equipment" name="equipment" required>
+          <option value="tent">Mountain Tent — ₸3,500/day</option>
+          <option value="backpack">Hiking Backpack — ₸1,500/day</option>
+          <option value="sleeping">Sleeping Bag — ₸1,000/day</option>
+          <option value="kit">Camping Kit — ₸4,500/day</option>
+        </select>
+
+        <label for="issue-date">Issue Date</label>
+        <input type="date" id="issue-date" name="issue-date" required>
+
+        <label for="return-date">Return Date</label>
+        <input type="date" id="return-date" name="return-date" required>
+
+        <label for="contact">Contact Person</label>
+        <input type="text" id="contact" name="contact" placeholder="Your full name" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="+7 700 000 0000" required>
+
+        <button class="btn" type="submit">Calculate Rental Price</button>
+        <p id="estimate" aria-live="polite">Your estimated price will appear here.</p>
+      </form>
+    </section>
+
+    <section id="terms" class="terms">
+      <h2 class="section-title">Rental Terms</h2>
+      <p>1. Please return all equipment on the agreed date.</p>
+      <p>2. Customers should keep the equipment clean and in good condition.</p>
+      <p>3. Check all equipment before leaving the rental point.</p>
+      <p>4. Follow local safety rules when hiking and camping.</p>
+      <p>
+        Useful links:
+        <a href="https://www.gov.kz/" target="_blank" rel="noopener">Official Kazakhstan Government</a>
+        |
+        <a href="https://maps.google.com/" target="_blank" rel="noopener">Find Us on Maps</a>
+      </p>
+    </section>
+  </main>
+
+  <footer id="prices">
+    <p><strong>TrailRent</strong> — Your next adventure starts here.</p>
+    <p>Tourist Equipment Rental Platform | 2026</p>
+    <button id="theme-toggle" type="button">Forest Dark Theme</button>
+  </footer>
+
+  <script>
+    const prices = {
+      tent: 3500,
+      backpack: 1500,
+      sleeping: 1000,
+      kit: 4500
+    };
+
+    const equipment = document.getElementById("equipment");
+    const issueDate = document.getElementById("issue-date");
+    const returnDate = document.getElementById("return-date");
+    const estimate = document.getElementById("estimate");
+
+    document.querySelectorAll(".choose-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        equipment.value = button.dataset.item;
+        document.getElementById("rental").scrollIntoView({
+          behavior: "smooth"
+        });
+      });
+    });
+
+    document.getElementById("rental-form").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const start = new Date(issueDate.value);
+      const end = new Date(returnDate.value);
+
+      if (!issueDate.value || !returnDate.value || end < start) {
+        estimate.textContent = "Please choose valid rental dates.";
+        return;
+      }
+
+      const days = Math.floor((end - start) / 86400000) + 1;
+      const total = prices[equipment.value] * days;
+
+      estimate.textContent =
+        "Estimated price: ₸" + total.toLocaleString("en-US") +
+        " for " + days + " day(s).";
+    });
+
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+  </script>
+</body>
+</html>
